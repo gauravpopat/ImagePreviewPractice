@@ -15,12 +15,18 @@
 <body style="margin: 3%;">
     <form action="{{ route('upload') }}" method="POST" enctype="multipart/form-data">
         @csrf
+        <div class="form-group">
         <label for="">Name</label>
-        <input type="text" name="name" placeholder="Enter Your Name" required>
+        <input type="text" name="name" class="form-control" placeholder="Enter Your Name" required>
+        </div>
+        <div class="form-group">
         <br><label for="">Image</label>
-        <input type="file" onchange="preview()" name="image" placeholder="Upload File" required>
-        <img id="frame" src=""/>
-        <br><input type="submit" value="Submit">
+        <input type="file" onchange="preview()" class="form-control" name="image" placeholder="Upload File" required>
+        </div>
+        <div class="form-group">
+        <img id="frame" src="" class="rounded mx-auto d-block"/>
+        </div>
+        <br><input type="submit" value="Insert" class="btn btn-dark w-100">
         @if (Session::has('success'))
             <p id="errormessage" style="text-align: left;color: green;">
                 {{ Session::get('success') }}

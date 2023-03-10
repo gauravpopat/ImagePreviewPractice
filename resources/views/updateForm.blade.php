@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Upload Image</title>
+    <title>Update Image</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,14 +15,19 @@
 <body style="margin: 3%;">
     <form action="{{ route('update') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <h1>Upadte form</h1>
         <input type="hidden" name="id" value="{{$image->id}}">
+        <div class="form-group">
         <label for="">Name</label>
-        <input type="text" name="name" placeholder="Enter Your Name" value="{{$image->name}}" required>
+        <input type="text" name="name" value="{{$image->name}}" class="form-control" placeholder="Enter Your Name" required>
+        </div>
+        <div class="form-group">
         <br><label for="">Image</label>
-        <input type="file" onchange="preview()" name="image" placeholder="Upload File" required>
-        <img id="frame" src="{{ asset('images/'.$image->image) }}" height="100px" width="100px"/>
-        <br><input type="submit" value="Submit">
+        <input type="file" onchange="preview()" class="form-control" name="image" placeholder="Upload File" required>
+        </div>
+        <div class="form-group">
+            <img id="frame" src="{{ asset('images/'.$image->image) }}" class="rounded mx-auto d-block" height="100px" width="100px"/>
+        </div>
+        <br><input type="submit" value="Update" class="btn btn-dark w-100">
         @if (Session::has('success'))
             <p id="errormessage" style="text-align: left;color: green;">
                 {{ Session::get('success') }}
