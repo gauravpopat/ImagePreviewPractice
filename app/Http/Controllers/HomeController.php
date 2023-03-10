@@ -29,7 +29,7 @@ class HomeController extends Controller
             'name' => $request->name,
             'image' => $filename
         ]);
-        
+
         return redirect('upload')->with('success', 'Data inserted successfully');
     }
 
@@ -52,8 +52,8 @@ class HomeController extends Controller
     public function update_image(Request $request)
     {
         $id = $request->id;
-
         $image = $request->file('image');
+        if($image){
         $destinationPathImg = public_path('/images/');
         $filename = time() . "myfile." . $request->image->extension();
 
@@ -65,6 +65,7 @@ class HomeController extends Controller
             'name'   => $request->name,
             'image'  => $filename
         ]);
+        }
         return redirect('show')->with('success', 'Data Updated successfully');
     }
 

@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
         <br><label for="">Image</label>
-        <input type="file" onchange="preview()" class="form-control" name="image" placeholder="Upload File" required>
+        <input type="file" onchange="preview()" class="form-control" name="image" placeholder="Upload File" value="{{$image->image}}">
         </div>
         <div class="form-group">
             <img id="frame" src="{{ asset('images/'.$image->image) }}" class="rounded mx-auto d-block" height="100px" width="100px"/>
