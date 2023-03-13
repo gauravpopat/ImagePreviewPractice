@@ -15,7 +15,7 @@
 <body>
 
     <div class="table-responsive">
-        <table class="table table-hover table-striped">
+        <table class="table table-striped">
             <thead class="table-dark">
                 <tr>
                     @if (Session::has('success'))
@@ -34,7 +34,7 @@
                         <td>{{ $image->name }}</td>
                         <td><img src="{{ asset('/images/' . $image->image) }}" alt="" height="40px"
                                 width="40px"> </td>
-                        <td> <a href="{{ route('delete', ['id' => $image->id]) }}">Delete</a> </td>
+                        <td> <a onclick="return confirm('Are you sure ?');" href="{{ route('delete', ['id' => $image->id]) }}">Delete</a> </td>
                         <td> <a href="{{ route('updateForm', ['id' => $image->id]) }}">Update</a> </td>
                     </tr>
                 @endforeach
