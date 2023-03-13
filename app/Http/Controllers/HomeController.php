@@ -39,21 +39,23 @@ class HomeController extends Controller
         return view('showdata', compact('images'));
     }
 
-    public function delete($id){
-        $image = Image::where('id',$id)->delete();
-        return back()->with('success','record deleted successfully');
+    public function delete($id)
+    {
+        $image = Image::where('id', $id)->delete();
+        return back()->with('success', 'record deleted successfully');
     }
 
-    public function updateForm($id){
-        $image = Image::where('id',$id)->first();
-        return view('updateForm',compact('image'));
+    public function updateForm($id)
+    {
+        $image = Image::where('id', $id)->first();
+        return view('updateForm', compact('image'));
     }
 
     public function update_image(Request $request)
     {
         $id = $request->id;
         $image = $request->file('image');
-        if($image){
+        if ($image) {
             $destinationPathImg = public_path('/images/');
             $filename = time() . "myfile." . $request->image->extension();
 
@@ -61,15 +63,13 @@ class HomeController extends Controller
                 return 'Error saving the file.';
             }
 
-            Image::where('id',$id)->update([
+            Image::where('id', $id)->update([
                 'image'  => $filename
             ]);
-        }else{
-            Image::where('id',$id)->update([
-                'name'   => $request->name
-            ]);
         }
+        Image::where('id', $id)->update([
+            'name'  => $request->name
+        ]);
         return redirect('show')->with('success', 'Data Updated successfully');
     }
-
 }
