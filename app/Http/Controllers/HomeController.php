@@ -54,17 +54,20 @@ class HomeController extends Controller
         $id = $request->id;
         $image = $request->file('image');
         if($image){
-        $destinationPathImg = public_path('/images/');
-        $filename = time() . "myfile." . $request->image->extension();
+            $destinationPathImg = public_path('/images/');
+            $filename = time() . "myfile." . $request->image->extension();
 
-        if (!$image->move($destinationPathImg, $filename)) {
-            return 'Error saving the file.';
-        }
+            if (!$image->move($destinationPathImg, $filename)) {
+                return 'Error saving the file.';
+            }
 
-        Image::where('id',$id)->update([
-            'name'   => $request->name,
-            'image'  => $filename
-        ]);
+            Image::where('id',$id)->update([
+                'image'  => $filename
+            ]);
+        }else{
+            Image::where('id',$id)->update([
+                'name'   => $request->name
+            ]);
         }
         return redirect('show')->with('success', 'Data Updated successfully');
     }
